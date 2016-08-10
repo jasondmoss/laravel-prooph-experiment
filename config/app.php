@@ -150,6 +150,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        Monii\Interop\Container\Laravel\ServiceProvider::class,
+        Prooph\Package\ProophServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
