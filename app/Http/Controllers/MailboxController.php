@@ -12,20 +12,12 @@ use Assert\Assertion;
 
 class MailboxController extends Controller {
 
-    // move this to a config file
-    private $command_map = [
-        'RegisterSystem' => RegisterSystemController::class,
-        'EditSystem' => EditSystemController::class,
-        'AddSystemAdministrator' => AddSystemAdministratorController::class,
-        'CreateSystemRole' => CreateRoleController::class,
-    ];
-
     public function recieve(MailboxRequest $request)
     {
         $command = studly_case($request->get('command'));
         $payload = $this->gatherPayload($request->all());
 
-        $controller = collect($this->command_map)
+        $controller = collect(config('commands.controller_routes'))
             ->get($command);
 
         if($controller) {
